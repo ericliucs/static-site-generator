@@ -1,8 +1,9 @@
 from enum import Enum
+from typing import Optional
 
 
 class TextType(Enum):
-    NORMAL = 0
+    TEXT = 0
     BOLD = 1
     ITALIC = 2
     CODE = 3
@@ -16,9 +17,9 @@ class TextNode:
                                  not TextType.IMAGE)):
             raise ValueError("Argument url may only be set if argument "
                              "text_type is TextType.LINK or TextType.IMAGE")
-        self.text = text
-        self.text_type = text_type
-        self.url = url
+        self.text: str = text
+        self.text_type: TextType = text_type
+        self.url: Optional[str] = url
 
     def __eq__(self, other: any) -> bool:
         return (self.text == other.text and self.text_type == other.text_type

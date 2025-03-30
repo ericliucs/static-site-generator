@@ -21,7 +21,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_invalid_url(self):
         self.assertRaises(ValueError, lambda: TextNode("This is an invalid URL",
-                                                       TextType.NORMAL,
+                                                       TextType.TEXT,
                                                        "https//bruh.com"))
 
 
