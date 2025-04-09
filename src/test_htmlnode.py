@@ -1,6 +1,5 @@
 import unittest
-from htmlnode import LeafNode, ParentNode, HTMLNode, text_node_to_html_node
-from textnode import TextNode, TextType
+from htmlnode import LeafNode, ParentNode, HTMLNode
 
 
 class TestHTMLNode(unittest.TestCase):
@@ -36,6 +35,18 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(
             node.props,
             None,
+        )
+
+    def test_repr(self):
+        node = HTMLNode(
+            "p",
+            "What a strange world",
+            None,
+            {"class": "primary"},
+        )
+        self.assertEqual(
+            node.__repr__(),
+            "HTMLNode(p, What a strange world, children: None, {'class': 'primary'})",
         )
 
     def test_leaf_to_html_p(self):
@@ -96,12 +107,6 @@ class TestHTMLNode(unittest.TestCase):
             node.to_html(),
             "<h2><b>Bold text</b>Normal text<i>italic text</i>Normal text</h2>",
         )
-
-    def test_text(self):
-        node = TextNode("This is a text node", TextType.TEXT)
-        html_node = text_node_to_html_node(node)
-        self.assertEqual(html_node.tag, None)
-        self.assertEqual(html_node.value, "This is a text node")
 
 
 if __name__ == "__main__":
